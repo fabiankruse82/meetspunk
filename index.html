@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/jpeg" href="./src/assets/Anarchie_logo_rot_patch_.jpg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeetsPunk</title>
+</head>
+<body>
+  <div id="root"></div>
+  <div>
+    <h1>MeetsPunk</h1>
+    <form id="inputForm">
+      <label for="meetLink">Meet Link:</label><br>
+      <input type="text" id="meetLink" name="meetLink"><br>
+      <label for="email">Email:</label><br>
+      <input type="text" id="email" name="email"><br>
+      <label for="password">Password:</label><br>
+      <input type="password" id="password" name="password"><br><br>
+      <button type="submit">Punk Meeting</button>
+    </form>
+  </div>
+  <script>
+    // Listen for form submission
+    document.getElementById('inputForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form submission
+      
+      // Get input values
+      const meetLink = document.getElementById('meetLink').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      
+      // Create a script element dynamically and set its src attribute to load main.jsx
+      const script = document.createElement('script');
+      script.type = 'module';
+      script.src = '/src/main.jsx';
+
+      // Once the script is loaded, set the variables with the user's input
+      script.onload = function() {
+        window.meetLink = meetLink;
+        window.email = email;
+        window.password = password;
+      };
+
+      // Append the script element to the body of the HTML document
+      document.body.appendChild(script);
+    });
+  </script>
+</body>
+</html>
